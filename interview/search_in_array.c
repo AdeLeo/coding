@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 /*
     二维数组中的查找
