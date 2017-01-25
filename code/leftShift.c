@@ -24,7 +24,7 @@ int main(void)
 	char str[] = "123456789";
 	const char s[] = "123456789";
 	
-	int i = 0;
+	int i = 2;
 	
 	for(i = 0; i < 30; i++)
 	{
@@ -45,7 +45,7 @@ void leftshiftone(char *s, int n)
 	s[n - 1] = tmp;
 	//printf("\n\n[Debug]%d %s\n\n",n, s);
 }
-
+/*
 void leftshift(char *s, int n, int m)
 {
 	int i = 0;
@@ -54,5 +54,39 @@ void leftshift(char *s, int n, int m)
 	for(i = 0; i < m; i++)
 	{
 		leftshiftone(s, n);
+	}
+}*/
+
+void leftshift(char *s, int n, int m)
+{
+	m %= n;
+	int p1 = 0;
+	int p2 = m;
+	int t = 0;
+
+	while(p2+m-1 <= n)
+	{
+		t = s[p2];
+		s[p2] = s[p1];
+		s[p1] = t;
+		p1++;
+		p2++;
+	}
+
+	if(n - p2 > 0)
+	{
+		char tmp[n - p2];
+		strcpy(tmp, s+p2);
+		//123456789
+		//printf("[Debug]:%s m:%d p1:%d p2:%d\n", tmp, m, p1, p2);
+		while(p2 != p1)
+		{
+			s[p2] = s[p2-1];
+			p2--;
+		}
+		
+		n = 0;
+		while(tmp[n] != '\0')
+			s[p1++] = tmp[n++];
 	}
 }
